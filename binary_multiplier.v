@@ -12,3 +12,22 @@ output [7:0] product
     assign p3 = (b[3])? a:8'b0;
     assign product = p0+(p1<<1)+(p2<<2)+(p3<<3);
 endmodule
+
+////behavioural model/////
+
+module multiplier_10bit(
+    input [9:0] a,
+    input [9:0] b,
+    output reg [19:0] product);
+    integer i;
+    always@(*) begin
+        product=20'b0;
+        for(i=0; i<10; i=i+1)begin
+            if(b[i]==1'b1)begin
+                product=product+(a<<i);
+            end
+        end
+    end
+endmodule
+
+
